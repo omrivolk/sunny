@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent implements OnInit {
   title = 'sunny';
+  country = { name: 'Israel', localName: 'ישראל' }
   areas = [
     { name: 'Timna', localName: 'תמנע' },
     { name: 'Gita West', localName: 'גיתה מערב' },

@@ -16,9 +16,15 @@
 #areas_list {
     list-style: none;
     padding-left: 0;
+    margin: 0;
 }
 
 #areas_list li {
     padding: 10px;
     font-size:1.2rem;
+}
+
+#country_name {
+    padding:10px;
+    font-size: 1.5rem;
 }
