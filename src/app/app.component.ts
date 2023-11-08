@@ -10,18 +10,20 @@ export class AppComponent implements OnInit {
   title = 'sunny';
   country = { name: 'Israel', localName: 'ישראל' }
   areas = [
-    { name: 'Timna', localName: 'תמנע' },
-    { name: 'Gita West', localName: 'גיתה מערב' },
-    { name: 'Gita East', localName: 'גיתה מזרח' },
-    { name: 'Ein Fara', localName: 'עין פארה' },
-    { name: 'Zanoah', localName: 'זנוח' },
-    { name: 'Hayonim', localName: 'היונים' },
-    { name: 'The Vanishing (Haneelam)', localName: 'הנעלם' },
-    { name: 'Beit Arye', localName: 'בית אריה' }
+    { name: 'Timna', localName: 'תמנע' , areaId: 1},
+    { name: 'Gita West', localName: 'גיתה מערב' , areaId: 2},
+    { name: 'Gita East', localName: 'גיתה מזרח' , areaId: 3},
+    { name: 'Ein Fara', localName: 'עין פארה' , areaId: 12},
+    { name: 'Zanoah', localName: 'זנוח' , areaId: 15},
+    { name: 'Hayonim', localName: 'היונים' , areaId: 17},
+    { name: 'The Vanishing (Haneelam)', localName: 'הנעלם', areaId: 16},
+    { name: 'Beit Arye', localName: 'בית אריה' , areaId: 123}
   ] 
 
   inputText = ''
   filtered_areas = []
+  selectedCountry = 'Israel'
+  selectedArea = null
 
   ngOnInit(): void {
     this.filtered_areas = this.areas
@@ -53,5 +55,9 @@ export class AppComponent implements OnInit {
     }
 
     return false
+  }
+
+  poo(e){
+    console.log(e)
   }
 }

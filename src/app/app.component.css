@@ -3,6 +3,8 @@
 #areas_select {
     padding: 5px;
     margin: 0;
+    max-width: 600px;
+    margin: 0px auto;
 }
 
 #areas_input {
