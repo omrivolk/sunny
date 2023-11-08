@@ -1,12 +1,12 @@
 <div id="areas_select">
-  <div id="country_name">{{country.name}} - {{country.localName}} </div>
+  <div id="country_name">{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span></div>
   <input type="text" [(ngModel)]="inputText" (keyup)="getFilteredAreas()" id="areas_input"
   placeholder="Type to search areas">
 
   <ul id="areas_list">
 
     <li *ngFor="let area of filtered_areas">
-      {{area.name}} - {{area.localName}} 
+      {{area.name}} <span class="local_name" *ngIf="area.localName">- {{area.localName}} </span>
     </li>
 
   </ul>
