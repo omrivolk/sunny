@@ -1,0 +1,13 @@
+<div id="areas_select">
+  <input type="text" [(ngModel)]="inputText" (keyup)="getFilteredAreas()" id="areas_input"
+  placeholder="Type to search areas">
+
+  <ul id="areas_list">
+
+    <li *ngFor="let area of filtered_areas">
+      {{area.name}} - {{area.localName}} 
+    </li>
+
+  </ul>
+
+</div>
