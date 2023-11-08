@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.filtered_areas = this.areas
   }
-
+ 
   getFilteredAreas(){
     this.filtered_areas = []
     for (var area of this.areas){
