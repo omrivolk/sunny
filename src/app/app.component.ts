@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     { name: 'Beit Arye', localName: 'בית אריה' , areaId: 123}
   ] 
 
+
   inputText = ''
   filtered_areas = []
   selectedCountry = 'Israel'

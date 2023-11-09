@@ -1,5 +1,14 @@
+<div id="top_nav">
+  <div><img src="/assets/logo.svg"/></div>
+  
+  <div id="page_title">
+{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span>
+  </div>  
+  <div style="padding: 10px;"><img src="/assets/menu.svg"/></div>
+</div>
+
 <div id="areas_select" *ngIf="selectedCountry || (!selectedArea)">
-  <div id="country_name">{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span></div>
+  <!-- <div id="country_name">{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span></div> -->
   <input type="text" [(ngModel)]="inputText" (keyup)="getFilteredAreas()" id="areas_input"
   placeholder="Type to search areas">
 
