@@ -2,22 +2,66 @@
   <div id="logo_div"><img src="./assets/logo.svg"/></div>
   
   <div id="page_title">
-{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span>
+    SunBeta
   </div>  
   <div style="padding: 10px;"><img src="./assets/menu.svg"/></div>
 </div>
 
-<div id="areas_select" *ngIf="selectedCountry || (!selectedArea)">
+<div id="countries_select" class="full_page" *ngIf="selectedCountry == null">
+ 
+  <input type="text" [(ngModel)]="inputText" (keyup)="getFilteredAreas()" id="areas_input"
+  placeholder="Type to search countries">
+
+  <ul class="areas_list">
+
+    <li *ngFor="let country of countries" (click)="countryClicked(country)">
+      {{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span>
+    </li>
+
+  </ul>
+
+</div>
+
+<div id="areas_select" class="full_page" *ngIf="selectedCountry && (!selectedArea)">
   <!-- <div id="country_name">{{country.name}} <span class="local_name" *ngIf="country.localName">- {{country.localName}} </span></div> -->
   <input type="text" [(ngModel)]="inputText" (keyup)="getFilteredAreas()" id="areas_input"
   placeholder="Type to search areas">
 
-  <ul id="areas_list">
+  <ul class="areas_list">
 
-    <li *ngFor="let area of filtered_areas" (click)="poo(area.areaId)">
+    <li *ngFor="let area of filtered_areas" (click)="areaClick(area.name)">
       {{area.name}} <span class="local_name" *ngIf="area.localName">- {{area.localName}} </span>
     </li>
 
   </ul>
 
+</div>
+
+<div id="sectors_select" class="full_page" *ngIf="selectedArea">
+  <h1>{{this.selectedArea}}</h1>
+  <input type="date" id="datePicker" (change)="dateChanged(event);"/>
+  <br><br>
+  <table>
+   <thead>
+    <tr>
+     <th (click)="sortBy('sector_name')">
+      <a href="#" class="sort-by"></a>Sector
+     </th>
+     <th (click)="sortBy('shade')">
+<a href="#" class="sort-by"></a>Shade
+     </th>
+    </tr>
+    <tr>
+     <th>
+      
+     </th>
+     <th id="time_line">
+
+     </th>
+    </tr>
+   </thead>
+   <tbody id="tbody_el">
+  
+   </tbody>
+  </table>
 </div>
