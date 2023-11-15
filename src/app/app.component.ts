@@ -9,29 +9,20 @@ import { Router, NavigationStart } from "@angular/router";
 
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router) {
-  router.events.forEach((event) => {
-    if(event instanceof NavigationStart) {
-      if (event.navigationTrigger === 'popstate') {
-        console.log('back')
-      }
-    }
-  });
-}
+//   constructor(private router: Router) {
+//   router.events.forEach((event) => {
+//     if(event instanceof NavigationStart) {
+//       if (event.navigationTrigger === 'popstate') {
+//         console.log('back')
+//       }
+//     }
+//   });
+// }
 
-  title = 'sunny';
-  countries = [{ name: 'Israel', localName: 'ישראל' },
-      { name: 'Greece', localName: 'Ελλάδα' }]
-  areas = [
-    { name: 'Timna', localName: 'תמנע' , areaId: 1},
-    { name: 'Gita West', localName: 'גיתה מערב' , areaId: 2},
-    { name: 'Gita East', localName: 'גיתה מזרח' , areaId: 3},
-    { name: 'Ein Fara', localName: 'עין פארה' , areaId: 12},
-    { name: 'Zanoah', localName: 'זנוח' , areaId: 15},
-    { name: 'Hayonim', localName: 'היונים' , areaId: 17},
-    { name: 'The Vanishing (Haneelam)', localName: 'הנעלם', areaId: 16},
-    { name: 'Beit Arye', localName: 'בית אריה' , areaId: 123}
-  ] 
+  title = 'Sunny';
+
+  countries =[]
+  areas = []
 
   inputText = ''
   filtered_areas = []
@@ -42,6 +33,13 @@ export class AppComponent implements OnInit {
   sort_type = 'shade'
 
   ngOnInit(): void {
+
+    var url = `./assets/countries/countries_list.json`
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        this.countries = data;
+      });
 
     // this.router.events.subscribe( e => {
     //   if(e instanceof NavigationStart) {
@@ -58,6 +56,7 @@ export class AppComponent implements OnInit {
     //     }
     //   }
     // }
+
   }
  
   getFilteredAreas(){
@@ -72,7 +71,6 @@ export class AppComponent implements OnInit {
   isInArea(area){
 
     var str = this.inputText.toLowerCase()
-    console.log(str)
     if (str == ''){
       return true
     }
@@ -108,12 +106,22 @@ export class AppComponent implements OnInit {
 
   }
 
-
-
   countryClicked(country){
-    this.addQueryParam('country',this.normName(country.name))
+
     this.selectedCountry = country
-    this.filtered_areas = this.areas
+
+    var n_country_name = this.normName(this.selectedCountry.name)
+
+    this.addQueryParam('country',n_country_name)
+
+    var url = `./assets/countries/${n_country_name}/areas_list.json`
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        this.areas = data;
+        this.filtered_areas = this.areas
+      });
+    
   }
 
   areaClick(area_name){
@@ -126,7 +134,6 @@ export class AppComponent implements OnInit {
     .then((res) => res.json())
     .then((shadeData) => {
       this.shade_data = shadeData;
-      console.log(shadeData);
       (<HTMLInputElement>document.getElementById("datePicker")).value = '2023-02-21';
       this.dateChanged()
     });
