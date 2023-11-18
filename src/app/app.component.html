@@ -39,7 +39,11 @@
 
 <div id="sectors_select" class="full_page" *ngIf="selectedArea">
   <h1>{{this.selectedArea}}</h1>
+  <span class="pointer" (click)="changeMonth(-1)"> -M </span>
+  <span  class="pointer"(click)="changeDay(-1)"> -D </span>
   <input type="date" id="datePicker" (change)="dateChanged(event);"/>
+  <span  class="pointer"(click)="changeDay(1)"> +D </span>
+  <span class="pointer" (click)="changeMonth(1)"> +M </span>
   <br><br>
   <table>
    <thead>
